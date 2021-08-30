@@ -11,10 +11,6 @@
 let findDuplicates = function(nums) {
   let result = [];
 
-  if (nums.length < 2) {
-    return result;
-  }
-
   // To meet memory constraint, we will use input array as a temporary storage
   // As long as all nums are positive integers and each value is <= array size,
   // we could use current number as an index to flag for duplicates.
