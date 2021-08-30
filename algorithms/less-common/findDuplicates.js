@@ -18,16 +18,17 @@ let findDuplicates = function(nums) {
   // To meet memory constraint, we will use input array as a temporary storage
   // As long as all nums are positive integers and each value is <= array size,
   // we could use current number as an index to flag for duplicates.
-  for (let i = 0; i < nums.length; i++) {
-    let n = nums[i] > 0 ? nums[i] : -nums[i];
+  nums.forEach((n, i) => {
+    if (n < 0) n = -n;
+    let flagIndex = n - 1;
 
-    if (nums[n - 1] < 0) {
+    if (nums[flagIndex] < 0) {
       // We have met previously number = n
       result.push(n);
     } else {
-      nums[n - 1] = -nums[n - 1];
+      nums[flagIndex] = -nums[flagIndex];
     }
-  }
+  });
   return result;
 }
 
