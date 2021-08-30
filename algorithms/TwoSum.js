@@ -1,7 +1,7 @@
 function twoSum(nums, target) {
   for (let i = 0; i < nums.length; i++) {
-    let pairIndex = nums.indexOf(target - nums[i]);
-    if (pairIndex !== -1 && pairIndex !== i)
+    let pairIndex = nums.indexOf(target - nums[i], i + 1);
+    if (pairIndex !== -1)
       return [i, pairIndex];
   }
   return null;
