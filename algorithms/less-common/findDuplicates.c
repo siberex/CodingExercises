@@ -6,7 +6,7 @@
  */
 int* findDuplicates(int* nums, int numsSize, int* returnSize) {
   int resultSize = 0;
-  int *result = malloc(resultSize * sizeof(int));
+  int *result = malloc(numsSize * sizeof(int));
 
   int n;
   for (int i = 0; i < numsSize; ++i) {
@@ -15,13 +15,13 @@ int* findDuplicates(int* nums, int numsSize, int* returnSize) {
     if (nums[n - 1] < 0) {
       // We have met number = n previously
       ++resultSize;
-      result = realloc(result, resultSize * sizeof(int));
       result[resultSize - 1] = n;
     } else {
       nums[n - 1] = -nums[n - 1];
     }
   }
   *returnSize = resultSize;
+  result = realloc(result, resultSize * sizeof(int));
   return result;
 }
 
