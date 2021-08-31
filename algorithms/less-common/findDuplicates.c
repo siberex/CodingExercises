@@ -6,6 +6,7 @@
  */
 int* findDuplicates(int* nums, int numsSize, int* returnSize) {
   int resultSize = 0;
+  // hmm, this looks like shit
   int *result = malloc(numsSize * sizeof(int));
 
   int n;
@@ -27,18 +28,19 @@ int* findDuplicates(int* nums, int numsSize, int* returnSize) {
 
 
 // gcc -ansi -o findDuplicates findDuplicates.c && ./findDuplicates
-// gcc -std=c99 -Wall -o findDuplicates findDuplicates.c && ./findDuplicates
+// gcc -std=c11 -Wall -o findDuplicates findDuplicates.c && ./findDuplicates
 int main() {
   int resSize = 0;
   int data[] = {5,4,6,7,9,3,10,9,5,6};
   size_t dataSize = sizeof data / sizeof *data;
 
-  int* dups = findDuplicates(data, dataSize, &resSize);
+  int* dups = findDuplicates(&data[0], dataSize, &resSize);
 
   printf("\nresults count: %d\n",resSize);
   for (int i = 0; i < resSize; ++i) {
     printf("%d ", dups[i]);
   }
+  free(dups);
 
   return 0;
 }
