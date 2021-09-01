@@ -12,23 +12,19 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
+let addTwoNumbers = function(l1, l2) {
   l1 = LinkedList2Array(l1);
   l2 = LinkedList2Array(l2);
-
-  // The number of nodes in each linked list is in the range [1, 100].
   const n1 = BigInt(l1.reverse().join(''));
   const n2 = BigInt(l2.reverse().join(''));
-
   const res = (n1 + n2).toString().split('');
 
-  // console.log(n1, n2, res);
+  //console.log(n1, n2, res);
   return Array2LinkedList(res);
 };
 
-function LinkedList2Array(l) {
+const LinkedList2Array = node => {
   const res = [];
-  let node = l;
   while (node.next) {
     res.push(node.val);
     node = node.next;
@@ -37,11 +33,10 @@ function LinkedList2Array(l) {
   return res;
 }
 
-function Array2LinkedList(arr) {
-  return arr.reduce((acc, curr, i, arr) => {
-    const node = {};
-    node.val = curr;
-    node.next =  acc;
-    return node;
-  }, null);
-}
+const Array2LinkedList = arr => arr.reduce(
+  (acc, curr) => ({
+    val: curr,
+    next: acc,
+  }),
+  null
+);
