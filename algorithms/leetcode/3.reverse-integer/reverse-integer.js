@@ -6,9 +6,8 @@
  * @param {number} x
  * @return {number}
  */
-var reverse = function(x) {
-  // Guaranteed overflow for n >= 2**31 and n < -2**31
-  let int32 = new Int32Array(1);
+const reverse = function(x) {
+  let res = 0;
 
   const isNegative = x < 0;
 
@@ -24,20 +23,19 @@ var reverse = function(x) {
 
     // Make sure n <= 0x7FFFFFFF (= 2**31 - 1)
     // 214748364 === (2**31 / 10 | 0)
-    if (int32[0] > 214748364) return 0;
-    int32[0] *= 10;
+    if (res > 214748364) return 0;
+    res *= 10;
 
-    // 2**31 - 214748364 * 10 === 8
-    if (int32[0] == 0x7FFFFFFF && digit > 7) return 0;
-    int32[0] += digit;
+    if (res == 0x7FFFFFFF && digit > 7) return 0;
+    res += digit;
   }
 
   // Restore sign
-  if (isNegative) int32[0] *= -1;
-  return int32[0];
+  if (isNegative) res *= -1;
+  return res;
 };
 
-var reverseNaive2 = function(x) {
+const reverseNaive2 = function(x) {
   const isNegative = x < 0;
 
   // Eliminate sign
@@ -59,7 +57,7 @@ var reverseNaive2 = function(x) {
   return reverse;
 };
 
-let reverseNaive1 = function(x) {
+const reverseNaive1 = function(x) {
   // This is WRONG SOLUTION: environment does not allow you to store 64-bit integers
   let reverse = parseInt(x.toString().split('').reverse().join(''));
   // If reversing x causes the value to go outside the signed 32-bit integer range, then return 0
