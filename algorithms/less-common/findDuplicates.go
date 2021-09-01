@@ -6,7 +6,7 @@ func findDuplicates(nums []int) []int {
 	for i := 0; i < len(nums); i++ {
 		n := nums[i]
 		if n < 0 {
-			n = -n
+			n *= -1
 		}
 		flagIndex := n - 1
 
