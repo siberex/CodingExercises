@@ -12,11 +12,11 @@ var reverseNaive2 = function(x) {
   // Eliminate sign
   if (isNegative) x *= -1;
 
-  let reverse = x.toString().split('')
-    .reduce(
-        // ['1','2','3'] => 321
-        (acc, curr, i) => acc + 10 ** i * (curr|0),
-        0
+  let reverse = 0;
+  x.toString().split('')
+    .forEach(
+      // ['1','2','3'] => 321
+      (curr, i) => reverse += 10 ** i * (curr|0)
     );
 
   // If reversing x causes the value to go outside the signed 32-bit integer range, then return 0
