@@ -20,10 +20,9 @@ var romanToInt = function(s) {
     D: 500,
     M: 1000,
   };
-  const mapEntries = Object.entries(map);
 
   let res = 0;
-  for (const [k, v] of mapEntries) {
+  for (const [k, v] of Object.entries(map)) {
     let mul = countWords(k, s);
     if (mul) {
       res += mul * v;
@@ -35,7 +34,7 @@ var romanToInt = function(s) {
 };
 
 const countWords = (word, str) => {
-  let count = 0
+  let count = 0;
   let position = str.indexOf(word);
 
   while (position !== -1) {
