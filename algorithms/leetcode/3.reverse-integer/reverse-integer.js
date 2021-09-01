@@ -18,14 +18,15 @@ const reverse = function(x) {
   const arr = x.toString().split('').reverse();
 
   // ['3','2','1'] => 321
-  for (const i in arr) {
-    const digit = arr[i] | 0; // aka parseInt
+  for (let digit of arr) {
+    digit |= 0; // aka parseInt
 
     // Make sure n <= 0x7FFFFFFF (= 2**31 - 1)
     // 214748364 === (2**31 / 10 | 0)
     if (res > 214748364) return 0;
     res *= 10;
 
+    // 2**31 - 214748364 * 10 === 8
     if (res == 0x7FFFFFFF && digit > 7) return 0;
     res += digit;
   }
