@@ -15,8 +15,11 @@
 var addTwoNumbers = function(l1, l2) {
   l1 = LinkedList2Array(l1);
   l2 = LinkedList2Array(l2);
-  const n1 = parseInt(l1.reverse().join(''));
-  const n2 = parseInt(l2.reverse().join(''));
+
+  // The number of nodes in each linked list is in the range [1, 100].
+  const n1 = BigInt(l1.reverse().join(''));
+  const n2 = BigInt(l2.reverse().join(''));
+
   const res = (n1 + n2).toString().split('');
 
   // console.log(n1, n2, res);
@@ -25,11 +28,11 @@ var addTwoNumbers = function(l1, l2) {
 
 function LinkedList2Array(l) {
   const res = [];
-  node = l;
-  do {
+  let node = l;
+  while (node.next) {
     res.push(node.val);
     node = node.next;
-  } while (node.next);
+  }
   res.push(node.val);
   return res;
 }
