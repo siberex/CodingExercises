@@ -6,10 +6,12 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLastWord = function(s) {
-  return s.match(/(\w+)\s*$/)[1].length;
-};
+const lengthOfLastWord = s =>
+    typeof s !== 'string'
+      ? undefined
+      : s.match(/(\w+)\s*$/)?.[1].length;
 
-var lengthOfLastWordNoRe = function(s) {
-  return s.split(' ').filter(Boolean).pop().length;
-};
+const lengthOfLastWordNoRe = s =>
+    typeof s !== 'string'
+      ? undefined
+      : s.split(' ').filter(Boolean).pop()?.length;
