@@ -27,7 +27,7 @@ const reverse = function(x) {
     res *= 10;
 
     // 2**31 - 214748364 * 10 === 8
-    if (res == 0x7FFFFFFF && digit > 7) return 0;
+    if (res === 0x7FFFFFFF && digit > 7) return 0;
     res += digit;
   }
 
