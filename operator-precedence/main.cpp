@@ -1,9 +1,10 @@
+// clang++ -std=c++17 -Wall -o /tmp/main main.cpp && /tmp/main
+// g++ --std=c++17 -Wall -o /tmp/main main.cpp && /tmp/main
+
 #include <iostream>
 
-// clang++ -std=c++17 -Wall -o /tmp/main main.cpp && /tmp/main
-// g++ --std=c++17 -o /tmp/main main.cpp && /tmp/main
+#pragma GCC diagnostic ignored "-Wunsequenced"
 int main() {
     int $year = 2021;
-    std::cout << (++ $year & $year --) + (++ $year ^ $year --);
-    return 0;
+    std::cout << (++ $year & $year --) + (++ $year ^ $year --) << std::endl;
 }
