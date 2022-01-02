@@ -1,5 +1,5 @@
 const var_dump = console.log;
-let $i, $inc;
+let $i, $inc1;
 
 $i = 100;
 var_dump( (++$i & $i--) );
