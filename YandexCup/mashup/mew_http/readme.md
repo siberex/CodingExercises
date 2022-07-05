@@ -11,15 +11,14 @@ java -cp "$PWD/server" Server -i input2.txt -a answer2.txt
 # Pass all header keys at once:
 # Note response headers are sorted by value alphabetically
 curl -K <(sed -r 's/^(.*)$/-H "X-Cat-Variable: \1"/' input.txt) -X MEW -I http://127.0.0.1:7777/
-# Or:
+curl -H "X-Cat-Variable: $(tr '\n' ',' < input.txt)" -X MEW -I http://127.0.0.1:7777/
+# Or, manually entering key pairs:
 curl -X MEW -H "X-Cat-Variable: Human,Window" -I http://127.0.0.1:7777/
 curl -X MEW -H "X-Cat-Variable: Morning,Afternoon" -I http://127.0.0.1:7777/
-
-
 
 # Solution:
 python3 -m venv .env
 . .env/bin/activate
 pip install -r requirements.txt
-python main.py
+python main.py < input.txt
 ```
