@@ -13,7 +13,8 @@ def req(keys: list) -> list:
                                stream=True,
                                timeout=0.1)
         if res.status_code == 200:
-            return res.headers['X-cat-value'].split(',')
+            res_headers = res.headers['X-cat-value'].split(',')
+            return list(map(str.strip, res_headers))
         else:
             return []
     except requests.exceptions.ReadTimeout:
@@ -47,11 +48,19 @@ def main():
             # List intersection
             common_value = set(values).intersection(last_values).pop()
             key_map[pair[0]] = common_value
+            # return item != common_value from the current values pair
+            key_map[pair[1]] = next(filter(lambda v: v != common_value, values))
+
+            # Second request, look behind and map the first key
+            if i == 1:
+                # return item != common_value from the last_values pair
+                key_map[keys[0]] = next(
+                    filter(lambda v: v != common_value, last_values)
+                )
 
         last_values = values
 
-    print(key_map)
-
-
+    for k in keys:
+        print(key_map[k])
 
 main()
