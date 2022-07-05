@@ -37,6 +37,7 @@ def main():
 
         # Too many requests or unknown keys
         if not len(values):
+            print("404 ERR 404 ERR 404 ERR")
             exit(1)
 
         # Values are equal, map both keys
